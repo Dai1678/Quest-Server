@@ -19,7 +19,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 router(app);
-
 app.use('/debug', [
   require('./routes/debug'),
 ]);
