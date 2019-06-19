@@ -13,8 +13,6 @@ module.exports = (sequelize, Datatypes) => {
             required: true,
             allowNull: false
         },
-        created_at: { type: Datatypes.DATE },
-        updated_at: { type: Datatypes.DATE },
     },
     {
         underscored: true,

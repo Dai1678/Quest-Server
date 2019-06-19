@@ -6,7 +6,13 @@ module.exports = (sequelize, Datatypes) => {
             type: Datatypes.UUID,
             primaryKey: true,
         },
-        patient_name: {
+        first_name: {
+            type: Datatypes.STRING,
+            isAlphanumeric: true,
+            required: true,
+            allowNull: false,
+        },
+        last_name: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
@@ -16,8 +22,6 @@ module.exports = (sequelize, Datatypes) => {
         //     type: Datatypes.UUID,
         //     required: true,
         // },
-        created_at: { type: Datatypes.DATE },
-        updated_at: { type: Datatypes.DATE },
     },
         {
             underscored: true,
