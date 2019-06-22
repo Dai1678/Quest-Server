@@ -11,7 +11,8 @@ console.log(JSON.stringify(config));
 
 const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
   dialect: 'mysql',
-  host: config.db.host
+  host: config.db.host,
+  timezone: 'Asia/Tokyo',
 });
 
 fs
@@ -40,10 +41,18 @@ db.hospital.hasMany(db.patient);
 db.hospital.hasMany(db.doctor);
 
 // patients
-db.patient.belongsTo(db.hospital);
+db.patient.belongsTo(db.hospital, {
+  foreignKey: {
+    name: 'hospital_id',
+  }
+});
 
 // doctors
-db.doctor.belongsTo(db.hospital);
+db.doctor.belongsTo(db.hospital, {
+  foreignKey: {
+    name: 'hospital_id',
+  }
+});
 
 sequelize
   .authenticate()
