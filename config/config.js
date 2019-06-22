@@ -12,7 +12,7 @@ const config = {
             username,
             password,
             database,
-            host
+            host,
         }
     },
     test: {},

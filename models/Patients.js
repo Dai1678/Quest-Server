@@ -2,21 +2,20 @@
 
 module.exports = (sequelize, Datatypes) => {
     return sequelize.define('patient', {
-        id: {
-            type: Datatypes.UUID,
+        username: {
+            type: Datatypes.STRING,
             primaryKey: true,
+            isAlphanumeric: true,
         },
         first_name: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
-            allowNull: false,
         },
         last_name: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
-            allowNull: false,
         },
         // questionnaire_id: {
         //     type: Datatypes.UUID,
@@ -24,6 +23,10 @@ module.exports = (sequelize, Datatypes) => {
         // },
     },
         {
+            timestamps: true,
+            indexes: [],
+            collate: 'utf8mb4_bin',
+            charset: 'utf8mb4',
             underscored: true,
             paranoid: true,
         })

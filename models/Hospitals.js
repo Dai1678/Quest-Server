@@ -15,6 +15,10 @@ module.exports = (sequelize, Datatypes) => {
         },
     },
     {
+        timestamps: true,
+        indexes: [],
+        collate: 'utf8mb4_bin',
+        charset: 'utf8mb4',
         underscored: true,
         paranoid: true,
     })

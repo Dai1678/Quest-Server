@@ -1,5 +1,8 @@
 .DS_Store
 
+# Config
+config/jwtConfig.js
+
 # Logs
 logs
 *.log
