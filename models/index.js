@@ -43,14 +43,14 @@ db.hospital.hasMany(db.doctor);
 // patients
 db.patient.belongsTo(db.hospital, {
   foreignKey: {
-    name: 'hospital_id',
+    name: 'hospitalId',
   }
 });
 
 // doctors
 db.doctor.belongsTo(db.hospital, {
   foreignKey: {
-    name: 'hospital_id',
+    name: 'hospitalId',
   }
 });
 

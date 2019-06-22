@@ -49,8 +49,8 @@ router.post('/login', (req, res, next) => {
 });
 
 /**
- * @param req.body.first_name @type string
- * @param req.body.last_name @type string
+ * @param req.body.firstName @type string
+ * @param req.body.lastName @type string
  * @param req.body.username @type string
  */
 router.post('/register/doctor', (req, res, next) => {
@@ -64,10 +64,10 @@ router.post('/register/doctor', (req, res, next) => {
         } else {
             req.logIn(user, err => {
                 const data = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
                     username: user.username,
-                    hospital_id: req.body.hospital_id,
+                    hospitalId: req.body.hospitalId,
                 };
                 db.doctor.findOne({
                     where: {
@@ -75,9 +75,9 @@ router.post('/register/doctor', (req, res, next) => {
                     },
                 }).then(user => {
                     user.update({
-                        first_name: data.first_name,
-                        last_name: data.last_name,
-                        hospital_id: data.hospital_id,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        hospitalId: data.hospitalId,
                     })
                     .then(() => {
                         console.log('user created in db');
@@ -98,9 +98,9 @@ router.post('/register/doctor', (req, res, next) => {
 
 /**
  * @param req.body.username @type string
- * @param req.body.first_name @type string
- * @param req.body.last_name @type string
- * @param req.body.hospital_id @type string
+ * @param req.body.firstName @type string
+ * @param req.body.lastName @type string
+ * @param req.body.hospitalId @type string
  */
 router.post('/register/patient', (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
@@ -113,9 +113,9 @@ router.post('/register/patient', (req, res, next) => {
         } else {
             db.patient.create({
                 username: req.body.username,
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                hospital_id: req.body.hospital_id,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                hospitalId: req.body.hospitalId,
             }).then(() => {
                 console.log('user created in db');
                 res.status(200).send({ message: 'patient user created' });

@@ -7,12 +7,12 @@ module.exports = (sequelize, Datatypes) => {
             primaryKey: true,
             isAlphanumeric: true,
         },
-        first_name: {
+        firstName: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
         },
-        last_name: {
+        lastName: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,

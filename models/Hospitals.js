@@ -7,7 +7,7 @@ module.exports = (sequelize, Datatypes) => {
             autoIncrement: true,
             primaryKey: true
         },
-        hospital_name: {
+        name: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
