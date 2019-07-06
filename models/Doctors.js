@@ -13,16 +13,12 @@ module.exports = (sequelize, Datatypes) => {
             required: true,
             allowNull: false,
         },
-        firstName: {
-            type: Datatypes.STRING,
-            isAlphanumeric: true,
+        isAdmin: {
+            type: Datatypes.BOOLEAN,
             required: true,
-        },
-        lastName: {
-            type: Datatypes.STRING,
-            isAlphanumeric: true,
-            required: true,
-        },
+            allowNull: false,
+            defaultValue: false,
+        }
     },
         {
             timestamps: true,
