@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken');
  * @param hospitalId @type string
  * @param page @type int
  * @param limit @type int
- * @returns users @type List<Patient>
+ * @returns result @type List<Patient>
  */
 
 router.get('/patient/list', async (req, res, next) => {
@@ -33,6 +33,11 @@ router.get('/patient/list', async (req, res, next) => {
         next(e);
     }
 });
+
+/**
+ * @param username @type string
+ * @returns patient @type Patient
+ */
 
 router.get('/patient', async (req, res, next) => {
     try {
