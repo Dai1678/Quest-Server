@@ -1,6 +1,6 @@
 'use strict';
 
-const jwtSecret = require('./jwtConfig');
+const jwtSecret = require('../config/jwtConfig');
 
 const passport = require('passport'),
     localStrategy = require('passport-local').Strategy,

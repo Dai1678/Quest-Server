@@ -6,10 +6,9 @@ const logger = require('morgan');
 const passport = require('passport');
 
 const router = require('./routes/api/v1');
+require('./services');
 
 const app = express();
-
-require('./config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 router(app);
+
 app.use('/debug', [
   require('./routes/debug'),
 ]);
