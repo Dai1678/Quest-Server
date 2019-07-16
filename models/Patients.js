@@ -11,16 +11,18 @@ module.exports = (sequelize, Datatypes) => {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
+            allowNull: false,
         },
         lastName: {
             type: Datatypes.STRING,
             isAlphanumeric: true,
             required: true,
+            allowNull: false,
         },
-        // questionnaire_id: {
-        //     type: Datatypes.UUID,
-        //     required: true,
-        // },
+        questionnaireId: {
+            type: Datatypes.STRING,
+            required: true,
+        },
     },
         {
             timestamps: true,

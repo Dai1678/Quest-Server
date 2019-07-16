@@ -17,21 +17,33 @@ const jwt = require('jsonwebtoken');
  */
 
 router.get('/patient/list', async (req, res, next) => {
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 100;
-    const offset = Math.max((page -1) * limit, 0);
+    passport.authenticate('jwt', { session: false }, async (err, user, info) => {
+        if (err) {
+            console.log(err);
+        }
+        if (info != undefined) {
+            console.log(info.message);
+            res.status(500).send({
+                message: info.message
+            });
+        } else {
+            const page = Number(req.query.page) || 1;
+            const limit = Number(req.query.limit) || 100;
+            const offset = Math.max((page - 1) * limit, 0);
 
-    //query check
-    const hospitalId = req.query.hospitalId;
-    let where = {};
-    if (hospitalId) where.hospitalId = hospitalId;
+            //query check
+            const hospitalId = req.query.hospitalId;
+            let where = {};
+            if (hospitalId) where.hospitalId = hospitalId;
 
-    try {
-        const result = await services.patient.list({ limit, offset, where });
-        res.json(result);
-    } catch (e) {
-        next(e);
-    }
+            try {
+                const result = await services.patient.list({ limit, offset, where });
+                res.json(result);
+            } catch (e) {
+                next(e);
+            }
+        }
+    })(req, res, next);
 });
 
 /**
@@ -40,18 +52,30 @@ router.get('/patient/list', async (req, res, next) => {
  */
 
 router.get('/patient', async (req, res, next) => {
-    try {
-        if (req.query.username) {
-            const username = req.query.username;
-            const patient = await services.patient.get(username);
-            if (!patient) {
-                res.status(404).send(`Not found user. Input username is ${username}`);
-            }
-            res.status(200).json(patient);
+    passport.authenticate('jwt', { session: false }, async (err, user, info) => {
+        if (err) {
+            console.log(err);
         }
-    } catch (e) {
-        next(e);
-    }
+        if (info != undefined) {
+            console.log(info.message);
+            res.status(500).send({
+                message: info.message
+            });
+        } else {
+            try {
+                if (req.query.username) {
+                    const username = req.query.username;
+                    const patient = await services.patient.get(username);
+                    if (!patient) {
+                        res.status(404).send(`Not found user. Input username is ${username}`);
+                    }
+                    res.status(200).json(patient);
+                }
+            } catch (e) {
+                next(e);
+            }
+        }
+    })(req, res, next);
 })
 
 module.exports = router;
