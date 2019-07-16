@@ -10,7 +10,7 @@ const jwtSecret = require('../../../config/jwtConfig');
 const jwt = require('jsonwebtoken');
 
 /**
- * @param req.body.id @type string
+ * @param req.body.username @type string
  * @param req.body.password @type string
  * @returns auth @type boolean
  * @returns token @type string
