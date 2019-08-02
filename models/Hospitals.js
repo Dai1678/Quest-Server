@@ -11,6 +11,7 @@ module.exports = (sequelize, Datatypes) => {
             isAlphanumeric: true,
             required: true,
             allowNull: false,
+            defaultValue: '',
         },
     },
     {

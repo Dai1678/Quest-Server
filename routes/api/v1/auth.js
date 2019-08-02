@@ -2,7 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-const uuid = require('node-uuid');
 
 const db = require('../../../models/index');
 const passport = require('passport');
@@ -85,7 +84,7 @@ router.post('/register/doctor', (req, res, next) => {
                     res.status(500).send({ message: 'failed to create doctor user' });
                 });
             } else {
-                res.status.send(200).send({ message: 'This account can not access'});
+                res.status.send(403).send({ message: 'This account can not access'});
             }
         }
     })(req, res, next);

@@ -3,11 +3,14 @@
 const _ = require('lodash');
 const db = require('../models/index');
 
-const get = async (username) => {
+const get = async (patientId) => {
     const user = await db.patient.findOne({ 
         where: {
-            username: username
-        }
+            id: patientId
+        },
+        include: [{
+            model: db.questionnaire,
+        }]
     });
     return user;
 };
@@ -20,7 +23,12 @@ exports.list = async (params) => {
 
     const res = await db.patient.findAndCountAll({
         offset, limit, where,
-        order: [ [ 'updatedAt', 'desc' ] ]
+        order: [ [ 'updatedAt', 'desc' ] ],
+        include: [{
+            model: db.questionnaire,
+            required: false
+        }],
+        distinct: true,
     });
 
     const total = res.count;
