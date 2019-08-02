@@ -35,24 +35,28 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // associations
-
 // hospitals
 db.hospital.hasMany(db.patient);
 db.hospital.hasMany(db.doctor);
 
 // patients
-db.patient.belongsTo(db.hospital, {
-  foreignKey: {
-    name: 'hospitalId',
-  }
-});
+db.patient.hasMany(db.questionnaire);
+
+db.patient.belongsTo(db.hospital);
 
 // doctors
-db.doctor.belongsTo(db.hospital, {
+db.doctor.belongsTo(db.hospital);
+
+// questionnaire
+db.questionnaire.belongsTo(db.patient)
+
+/**
+ * , {
   foreignKey: {
-    name: 'hospitalId',
+    name: 'username',
   }
-});
+}
+ */
 
 sequelize
   .authenticate()

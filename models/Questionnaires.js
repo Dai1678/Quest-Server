@@ -1,22 +1,20 @@
 'use strict';
 
 module.exports = (sequelize, Datatypes) => {
-    return sequelize.define('patient', {
+    return sequelize.define('questionnaire', {
         id: {
             type: Datatypes.STRING,
             primaryKey: true,
             isAlphanumeric: true,
         },
-        firstName: {
-            type: Datatypes.STRING,
-            isAlphanumeric: true,
+        result: {
+            type: Datatypes.JSON,
             required: true,
             allowNull: false,
-            defaultValue: 'ユーザー',
+            defaultValue: '{}'
         },
-        lastName: {
+        responsibleDoctorId: {
             type: Datatypes.STRING,
-            isAlphanumeric: true,
             required: true,
             allowNull: false,
             defaultValue: '',
