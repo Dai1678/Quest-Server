@@ -3,27 +3,19 @@
 const express = require('express');
 const router = express.Router();
 
-const services = require('../../../services');
 const db = require('../../../models/index');
+const services = require('../../../services');
 const passport = require('passport');
-const jwtSecret = require('../../../config/jwtConfig');
-const jwt = require('jsonwebtoken');
 
-/**
- * @param hospitalId @type string
- * @param page @type int
- * @param limit @type int
- * @returns result @type List<Patient>
- */
-
-router.get('/patient/list', async (req, res, next) => {
+// GET List
+router.get('/', async (req, res, next) => {
     passport.authenticate('jwt', { session: false }, async (err, user, info) => {
         if (err) {
             console.log(err);
         }
         if (info != undefined) {
             console.log(info.message);
-            res.status(500).send({
+            res.status(401).send({
                 message: info.message
             });
         } else {
@@ -46,29 +38,52 @@ router.get('/patient/list', async (req, res, next) => {
     })(req, res, next);
 });
 
-/**
- * @param username @type string
- * @returns patient @type Patient
- */
+// POST Create
+router.post('/', (req, res, next) => {
+    passport.authenticate('jwt', { session: false }, (err, user, info) => {
+        if (err) {
+            console.log(err);
+        }
+        if (info != undefined) {
+            console.log(info.message);
+            res.status(401).send({ message: info.message });
+        } else {
+            try {
+                db.patient.create({
+                    id: req.body.id,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    hospitalId: req.body.hospitalId,
+                }).then(() => {
+                    console.log('user created in db');
+                    res.status(200).send({ message: 'patient user created' });
+                }).catch(err => {
+                    console.log(err);
+                    res.status(500).send({ message: `${err}`});
+                });
+            } catch (e) {
+                next(e);
+            }
+        }
+    })(req, res, next);
+});
 
-router.get('/patient', async (req, res, next) => {
+// GET by id
+router.get('/:id', async (req, res, next) => {
     passport.authenticate('jwt', { session: false }, async (err, user, info) => {
         if (err) {
             console.log(err);
         }
         if (info != undefined) {
             console.log(info.message);
-            res.status(500).send({
+            res.status(401).send({
                 message: info.message
             });
         } else {
             try {
-                if (req.query.username) {
-                    const username = req.query.username;
-                    const patient = await services.patient.get(username);
-                    if (!patient) {
-                        res.status(404).send(`Not found user. Input username is ${username}`);
-                    }
+                if (req.params.id) {
+                    const patientId = req.params.id;
+                    const patient = await services.patient.get(patientId);
                     res.status(200).json(patient);
                 }
             } catch (e) {
@@ -77,5 +92,9 @@ router.get('/patient', async (req, res, next) => {
         }
     })(req, res, next);
 })
+
+// TODO PUT
+
+// TODO DELETE
 
 module.exports = router;

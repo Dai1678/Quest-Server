@@ -9,25 +9,25 @@ const passport = require('passport'),
     ExtractJWT = require('passport-jwt').ExtractJwt;
 
 passport.use(
-    'register',
+    'create',
     new localStrategy(
         {
-            usernameField: 'username',
+            usernameField: 'id',
             passwordField: 'password',
             session: false,
         },
-        (username, password, done) => {
+        (id, password, done) => {
             try {
                 db.doctor.findOne({
                     where: {
-                        username: username,
+                        id: id,
                     },
                 }).then(user => {
                     if (user != null) {
-                        console.log('username already taken');
-                        return done(null, false, { message: 'username already taken' });
+                        console.log('user already created');
+                        return done(null, false, { message: 'user already created' });
                     } else {
-                        Doctor.create({ username, password }).then(user => {
+                        db.doctor.create({ id, password }).then(user => {
                             console.log('user created');
                             return done(null, user);
                         });
@@ -44,20 +44,20 @@ passport.use(
     'login',
     new localStrategy(
         {
-            usernameField: 'username',
+            usernameField: 'id',
             passwordField: 'password',
             session: false,
         },
-        (username, password, done) => {
+        (id, password, done) => {
             try {
                 db.doctor.findOne({
                     where: {
-                        username: username,
+                        id: id,
                         password: password,
                     },
                 }).then(user => {
                     if (user == null) {
-                        return done(null, false, { message: 'Invalid username or password' });
+                        return done(null, false, { message: 'Invalid id or password' });
                     } else {
                         console.log('user found. authenticated.');
                         return done(null, user);
@@ -81,7 +81,7 @@ passport.use(
         try {
             db.doctor.findOne({
                 where: {
-                    username: jwt_payload.id,
+                    id: jwt_payload.id,
                 },
             }).then(user => {
                 if (user) {
