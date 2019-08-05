@@ -19,7 +19,6 @@ module.exports = (sequelize, Datatypes) => {
         indexes: [],
         collate: 'utf8mb4_bin',
         charset: 'utf8mb4',
-        underscored: true,
         paranoid: true,
     })
 };

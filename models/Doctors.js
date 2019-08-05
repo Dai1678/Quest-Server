@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, Datatypes) => {
     return sequelize.define('doctor', {
-        username: {
+        id: {
             type: Datatypes.STRING,
             primaryKey: true,
             isAlphanumeric: true,
@@ -26,7 +26,6 @@ module.exports = (sequelize, Datatypes) => {
             indexes: [],
             collate: 'utf8mb4_bin',
             charset: 'utf8mb4',
-            underscored: true,
             paranoid: true,
         })
 };

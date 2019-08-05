@@ -50,14 +50,6 @@ db.doctor.belongsTo(db.hospital);
 // questionnaire
 db.questionnaire.belongsTo(db.patient)
 
-/**
- * , {
-  foreignKey: {
-    name: 'username',
-  }
-}
- */
-
 sequelize
   .authenticate()
   .then(() => {
