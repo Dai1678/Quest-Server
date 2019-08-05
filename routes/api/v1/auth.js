@@ -18,7 +18,7 @@ router.post('/login', (req, res, next) => {
             res.status(401).send({
                 auth: false,
                 token: null,
-                user: null
+                doctor: null
             })
         } else {
             req.logIn(user, err => {
@@ -31,14 +31,14 @@ router.post('/login', (req, res, next) => {
                     res.status(200).send({
                         auth: true,
                         token: token,
-                        user: user
+                        doctor: user
                     });
                 }).catch(err => {
                     console.log(err);
                     res.status(401).send({
                         auth: false,
                         token: null,
-                        user: null
+                        doctor: null
                     })
                 });
             });
