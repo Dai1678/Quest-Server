@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+    environment:
+      MYSQL_DATABASE: "quest"
+      MYSQL_ROOT_PASSWORD: "root"
+      TZ: "Japan"
+    expose:
+      - "3309"
+    ports:
+      - "3309:3306"
+  api:
+      image: "node:8.10"
+      volumes:
+        - .:/quest
+      working_dir: "/quest"
+      command: "npm run start"
+      ports:
+        - "3000:3000"
+      links:
+        - db
+      environment:
+        - "TZ=Japan"

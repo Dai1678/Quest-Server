@@ -12,6 +12,7 @@ console.log(JSON.stringify(config));
 const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
   dialect: 'mysql',
   host: config.db.host,
+  port: 3309,
   timezone: 'Asia/Tokyo',
 });
 
