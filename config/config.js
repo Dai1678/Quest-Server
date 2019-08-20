@@ -7,7 +7,7 @@ const host = process.env.HOST;
 const node_env = process.env.NODE_ENV;
 
 const config = {
-    dev: {
+    local: {
         db: {
             username,
             password,
@@ -15,7 +15,7 @@ const config = {
             host,
         }
     },
-    test: {},
+    develop: {},
     production: {
         db: {
             username,
