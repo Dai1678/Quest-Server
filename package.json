@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "stop": "pm2 delete quest",
     "local": "pm2 start ./pm2/local.json",
-    "production": "pm2 start ./pm2/production.json"
+    "production": "pm2 start ./pm2/production.json",
+    "serveo": "autossh -M 0 -f -R quest:80:localhost:3000 serveo.net"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
