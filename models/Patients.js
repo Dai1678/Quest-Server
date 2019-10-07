@@ -21,6 +21,20 @@ module.exports = (sequelize, Datatypes) => {
             allowNull: false,
             defaultValue: '',
         },
+        firstNameReading: {
+            type: Datatypes.STRING,
+            isAlphanumeric: true,
+            required: true,
+            allowNull: false,
+            defaultValue: '',
+        },
+        lastNameReading: {
+            type: Datatypes.STRING,
+            isAlphanumeric: true,
+            required: true,
+            allowNull: false,
+            defaultValue: '',
+        },
     },
         {
             timestamps: true,

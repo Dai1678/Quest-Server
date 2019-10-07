@@ -10,6 +10,7 @@
     "serveo": "autossh -M 0 -f -R quest:80:localhost:3000 serveo.net"
   },
   "dependencies": {
+    "@hapi/boom": "^8.0.1",
     "bcrypt": "^3.0.6",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
