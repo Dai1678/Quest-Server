@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const boom = require('@hapi/boom');
-const passport = require('passport');
 
 const router = require('./routes/api/v1');
 require('./services');
@@ -20,8 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(passport.initialize());
 
 router(app);
 
