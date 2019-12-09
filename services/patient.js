@@ -62,7 +62,6 @@ const dbUpsert = async (item) => {
             createdAt: item.createdAt || Date.now(),
             updatedAt: item.updatedAt || Date.now(),
             deletedAt: item.deletedAt || null,
-            hospitalId: item.hospitalId
         };
         await db.patient.upsert(patient);
 

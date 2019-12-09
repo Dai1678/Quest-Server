@@ -35,6 +35,20 @@ module.exports = (sequelize, Datatypes) => {
             allowNull: false,
             defaultValue: '',
         },
+        gender: {
+            type: Datatypes.STRING,
+            isAlphanumeric: true,
+            required: true,
+            allowNull: false,
+            defaultValue: '',
+        },
+        ageRange: {
+            type: Datatypes.STRING,
+            isAlphanumeric: true,
+            required: true,
+            allowNull: false,
+            defaultValue: '',
+        }
     },
         {
             timestamps: true,
