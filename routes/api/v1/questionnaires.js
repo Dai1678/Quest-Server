@@ -33,7 +33,6 @@ router.post('/', async (req, res, next) => {
         const createQuestionnaire = {
             id: req.body.id,
             result: req.body.result,
-            responsibleDoctorId: req.body.responsibleDoctorId,
             patientId: req.body.patientId,
             createdAt: Date.now(),
             updatedAt: Date.now(),

@@ -35,17 +35,9 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // associations
-// hospitals
-db.hospital.hasMany(db.patient);
-db.hospital.hasMany(db.doctor);
 
 // patients
 db.patient.hasMany(db.questionnaire);
-
-db.patient.belongsTo(db.hospital);
-
-// doctors
-db.doctor.belongsTo(db.hospital);
 
 // questionnaire
 db.questionnaire.belongsTo(db.patient)

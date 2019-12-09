@@ -14,9 +14,7 @@ router.get('/', async (req, res, next) => {
     const offset = Math.max((page - 1) * limit, 0);
 
     //query check
-    const hospitalId = req.query.hospitalId || 1;
     let where = {};
-    if (hospitalId) where.hospitalId = hospitalId;
 
     try {
         const result = await services.patient.list({ limit, offset, where });
@@ -36,7 +34,8 @@ router.post('/', (req, res, next) => {
             lastName: req.body.lastName,
             firstNameReading: req.body.firstNameReading,
             lastNameReading: req.body.lastNameReading,
-            hospitalId: req.body.hospitalId,
+            gender: req.body.gender,
+            ageRange: req.body.ageRange,
             questionnaires: []
         };
         db.patient.create(createPatient)

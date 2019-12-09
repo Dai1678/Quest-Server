@@ -13,12 +13,6 @@ module.exports = (sequelize, Datatypes) => {
             allowNull: false,
             defaultValue: '{}'
         },
-        responsibleDoctorId: {
-            type: Datatypes.STRING,
-            required: true,
-            allowNull: false,
-            defaultValue: '',
-        },
     },
         {
             timestamps: true,
