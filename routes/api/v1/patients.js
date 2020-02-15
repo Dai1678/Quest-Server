@@ -40,8 +40,14 @@ router.post('/', (req, res, next) => {
         };
         db.patient.create(createPatient)
         .then(() => {
-            console.log('user created in db');
-            res.status(200).send(createPatient);
+            const message = 'user created in db';
+            const response = {
+                statusCode: 200,
+                isSuccess: true,
+                message: message
+            }
+            console.log(message);
+            res.status(200).send(response);
         }).catch(err => {
             console.log(err);
             return next(boom.forbidden('作成に失敗しました もう一度お試しください'));
